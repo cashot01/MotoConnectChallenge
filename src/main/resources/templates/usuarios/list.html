@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuários - MotoConnect</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <h2>Usuários</h2>
+    <a th:href="@{/usuarios/novo}" class="btn">Novo Usuário</a>
+    <table class="styled-table">
+        <thead>
+        <tr><th>ID</th><th>Nome</th><th>Email</th><th>Role</th><th>Ações</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.id}"></td>
+            <td th:text="${usuario.nome}"></td>
+            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.role}"></td>
+            <td>
+                <a th:href="@{'/usuarios/editar/' + ${usuario.id}}" class="btn small">Editar</a>
+                <form th:action="@{'/usuarios/deletar/' + ${usuario.id}}" method="post" style="display:inline;">
+                    <button type="submit" class="link-btn">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

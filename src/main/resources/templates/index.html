@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MotoConnect - Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<main class="container">
+    <h2>Dashboard</h2>
+    <div class="grid dashboard-cards">
+        <div class="card">
+            <h3>Usuários</h3>
+            <p class="count" th:text="${totalUsuarios}">0</p>
+            <a th:href="@{/usuarios}" class="btn small">Ver Usuários</a>
+        </div>
+        <div class="card">
+            <h3>Motos</h3>
+            <p class="count" th:text="${totalMotos}">0</p>
+            <a th:href="@{/motos}" class="btn small">Ver Motos</a>
+        </div>
+        <div class="card">
+            <h3>Histórico</h3>
+            <p class="count" th:text="${totalHistorico}">0</p>
+            <a th:href="@{/historico}" class="btn small">Ver Histórico</a>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

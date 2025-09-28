@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico - MotoConnect</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <h2>Histórico de Motos</h2>
+    <a th:href="@{/historico/novo}" class="btn">Novo Registro</a>
+    <table class="styled-table">
+        <thead>
+        <tr><th>ID</th><th>Parte</th><th>Descrição</th><th>Moto</th><th>Usuário</th><th>Ações</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="hist : ${historicos}">
+            <td th:text="${hist.id}"></td>
+            <td th:text="${hist.parte}"></td>
+            <td th:text="${hist.descricao}"></td>
+            <td th:text="${hist.moto.modelo} + ' / ' + ${hist.moto.placa}"></td>
+            <td th:text="${hist.usuario.nome}"></td>
+            <td>
+                <a th:href="@{'/historico/editar/' + ${hist.id}}" class="btn small">Editar</a>
+                <form th:action="@{'/historico/deletar/' + ${hist.id}}" method="post" style="display:inline;">
+                    <button type="submit" class="link-btn">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
