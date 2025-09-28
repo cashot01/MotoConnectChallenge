@@ -1,8 +1,10 @@
 package br.com.fiap.motoconnect.challenge.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "tb_rfid")
 public class Rfid {
     @Id

@@ -43,9 +43,8 @@ public class SecurityConfig {
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
-                )
-                // CSRF
-                .csrf().disable(); // opcional: habilitar se necessário
+                );
+
         return http.build();
     }
 }

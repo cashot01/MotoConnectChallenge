@@ -1,8 +1,10 @@
 package br.com.fiap.motoconnect.challenge.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "tb_usuario", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Usuario {
     @Id

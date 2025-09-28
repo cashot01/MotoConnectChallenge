@@ -1,0 +1,8 @@
+services:
+  oracle:
+    image: 'gvenzl/oracle-xe:21-slim'
+    container_name: oracle_motoconnect
+    environment:
+      - 'ORACLE_PASSWORD=071105'
+    ports:
+      - '1521:1521'

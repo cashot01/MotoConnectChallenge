@@ -1,0 +1,22 @@
+# Etapa 1: build
+FROM gradle:8.10-jdk17 AS builder
+WORKDIR /app
+
+# Copia todo o projeto
+COPY . .
+
+# Gera o jar do Spring Boot
+RUN gradle bootJar --no-daemon
+
+# Etapa 2: imagem final
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+
+# Copia o jar gerado da etapa de build
+COPY --from=builder /app/build/libs/*.jar app.jar
+
+# Porta exposta (8080 padrão para Spring Boot)
+EXPOSE 8080
+
+# Executa a aplicação
+ENTRYPOINT ["java", "-jar", "app.jar"]

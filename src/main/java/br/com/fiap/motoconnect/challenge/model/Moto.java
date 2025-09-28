@@ -1,9 +1,12 @@
 package br.com.fiap.motoconnect.challenge.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.time.LocalDate;
 
 @Entity
+@Data
 @Table(name = "tb_moto", uniqueConstraints = @UniqueConstraint(columnNames = "placa"))
 public class Moto {
     @Id
