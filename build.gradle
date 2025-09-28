@@ -18,13 +18,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'com.oracle.database.jdbc:ojdbc11:23.3.0.23.09'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
     // Flyway compatível com Oracle 19c
     implementation 'org.flywaydb:flyway-core:10.12.0'
 
-    // Driver Oracle compatível com Java 17
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc11:21.9.0.0'
+    // Driver Oracle compatível com Java 17 e Oracle 19c XE
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc11:19.12.0.0'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.30'
@@ -37,4 +38,11 @@ dependencies {
     // Testes
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+// Limpeza de cache do Gradle
+tasks.named('clean') {
+    doLast {
+        println "Limpeza concluída!"
+    }
 }

@@ -1,8 +1,17 @@
 services:
   oracle:
-    image: 'gvenzl/oracle-xe:21-slim'
+    image: gvenzl/oracle-xe:19.3.0-slim
     container_name: oracle_motoconnect
     environment:
-      - 'ORACLE_PASSWORD=071105'
+      ORACLE_PASSWORD: 071105
+      ORACLE_USER: rm555466
+      ORACLE_DATABASE: ORCL
+      APP_USER: rm555466
+      APP_USER_PASSWORD: 071105
     ports:
-      - '1521:1521'
+      - "1521:1521"
+    healthcheck:
+      test: ["CMD", "sqlplus", "-L", "rm555466/071105@//localhost:1521/ORCL", "exit"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
