@@ -4,11 +4,12 @@ import br.com.fiap.motoconnect.challenge.model.HistoricoMoto;
 import br.com.fiap.motoconnect.challenge.service.HistoricoMotoService;
 import br.com.fiap.motoconnect.challenge.service.MotoService;
 import br.com.fiap.motoconnect.challenge.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
+
 
 @Controller
 @RequestMapping("/historico")
