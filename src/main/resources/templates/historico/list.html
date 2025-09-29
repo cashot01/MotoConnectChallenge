@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
+<div th:replace="~{fragments/header :: header}"></div>
 <div class="container">
     <h2>Histórico de Motos</h2>
     <a th:href="@{/historico/novo}" class="btn">Novo Registro</a>
@@ -31,6 +31,6 @@
         </tbody>
     </table>
 </div>
-<div th:replace="fragments/footer :: footer"></div>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

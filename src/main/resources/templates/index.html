@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
+<div th:replace="~{fragments/header :: header}"></div>
 <main class="container">
     <h2>Dashboard</h2>
     <div class="grid dashboard-cards">
@@ -27,6 +27,6 @@
         </div>
     </div>
 </main>
-<div th:replace="fragments/footer :: footer"></div>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
