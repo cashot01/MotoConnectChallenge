@@ -7,3 +7,4 @@ import java.util.List;
 public interface HistoricoMotoRepository extends JpaRepository<HistoricoMoto, Long> {
     List<HistoricoMoto> findByMotoId(Long motoId);
 }
+

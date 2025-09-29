@@ -2,36 +2,21 @@ package br.com.fiap.motoconnect.challenge.service;
 
 import br.com.fiap.motoconnect.challenge.model.Usuario;
 import br.com.fiap.motoconnect.challenge.repository.UsuarioRepository;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UsuarioService {
+    private final UsuarioRepository usuarioRepository;
 
-    private final UsuarioRepository repository;
-
-    public UsuarioService(UsuarioRepository repository) {
-        this.repository = repository;
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 
-    public List<Usuario> listarTodos() {
-        return repository.findAll();
-    }
-
-    public Optional<Usuario> buscarPorId(Long id) {
-        return repository.findById(id);
-    }
-
-    public Usuario salvar(Usuario usuario) {
-        return repository.save(usuario);
-    }
-
-    public void deletar(Long id) {
-        repository.deleteById(id);
-    }
-
-    public Optional<Usuario> buscarPorEmail(String email) {
-        return repository.findByEmail(email);
+    public Usuario register(OAuth2User principal) {
+        var usuario = usuarioRepository.findByEmail(principal.getAttributes().get("email").toString());
+        return usuario.orElseGet(() -> usuarioRepository.save(new Usuario(principal)));
     }
 }

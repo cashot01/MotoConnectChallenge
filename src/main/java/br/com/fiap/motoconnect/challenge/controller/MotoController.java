@@ -16,12 +16,12 @@ public class MotoController {
 
     private final MotoService service;
     private final RfidService rfidService;
-    private final UsuarioService usuarioService;
 
-    public MotoController(MotoService service, RfidService rfidService, UsuarioService usuarioService) {
+
+    public MotoController(MotoService service, RfidService rfidService) {
         this.service = service;
         this.rfidService = rfidService;
-        this.usuarioService = usuarioService;
+
     }
 
     @GetMapping
@@ -34,7 +34,6 @@ public class MotoController {
     public String novo(Model model) {
         model.addAttribute("moto", new Moto());
         model.addAttribute("rfids", rfidService.listarTodos());
-        model.addAttribute("usuarios", usuarioService.listarTodos());
         return "motos/form";
     }
 
@@ -51,7 +50,6 @@ public class MotoController {
                 .orElseThrow(() -> new IllegalArgumentException("ID inválido"));
         model.addAttribute("moto", moto);
         model.addAttribute("rfids", rfidService.listarTodos());
-        model.addAttribute("usuarios", usuarioService.listarTodos());
         return "motos/form";
     }
 

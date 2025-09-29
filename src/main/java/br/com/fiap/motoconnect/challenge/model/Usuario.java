@@ -1,27 +1,33 @@
 package br.com.fiap.motoconnect.challenge.model;
 
+
+
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 @Entity
 @Data
-@Table(name = "tb_usuario", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@NoArgsConstructor
+@Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, length = 100)
-    private String senha;
+    private String avatarUrl;
 
-    @Column(length = 20)
-    private String role = "USER";
+
+    public Usuario(OAuth2User principal) {
+        this.nome = principal.getAttributes().get("name").toString();
+        this.email = principal.getAttributes().get("email").toString();
+        this.avatarUrl = principal.getAttributes().get("avatar_url").toString();
+    }
 }
-

@@ -16,12 +16,11 @@ public class HistoricoMotoController {
 
     private final HistoricoMotoService service;
     private final MotoService motoService;
-    private final UsuarioService usuarioService;
 
-    public HistoricoMotoController(HistoricoMotoService service, MotoService motoService, UsuarioService usuarioService) {
+
+    public HistoricoMotoController(HistoricoMotoService service, MotoService motoService) {
         this.service = service;
         this.motoService = motoService;
-        this.usuarioService = usuarioService;
     }
 
     // Listar todos os registros
@@ -36,7 +35,7 @@ public class HistoricoMotoController {
     public String novo(Model model) {
         model.addAttribute("historico", new HistoricoMoto());
         model.addAttribute("motos", motoService.listarTodos());
-        model.addAttribute("usuarios", usuarioService.listarTodos());
+
         return "historico/form";
     }
 
@@ -55,7 +54,6 @@ public class HistoricoMotoController {
                 .orElseThrow(() -> new IllegalArgumentException("ID inválido"));
         model.addAttribute("historico", historico);
         model.addAttribute("motos", motoService.listarTodos());
-        model.addAttribute("usuarios", usuarioService.listarTodos());
         return "historico/form";
     }
 
