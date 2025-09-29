@@ -6,5 +6,5 @@ CREATE TABLE tb_historico_moto (
    usuario_id BIGINT NOT NULL,
 
     CONSTRAINT fk_historico_moto FOREIGN KEY (moto_id) REFERENCES tb_moto(id) ON DELETE CASCADE,
-    CONSTRAINT fk_historico_usuario FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE
+    CONSTRAINT fk_historico_usuario FOREIGN KEY (usuario_id) REFERENCES tb_usuario(id) ON DELETE CASCADE
 );

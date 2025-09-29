@@ -1,5 +1,4 @@
-INSERT INTO tb_usuario(nome,email,senha,role)
-VALUES ('Admin','admin@motoconnect.com','admin123','ADMIN'), ('Usuario1','user1@motoconnect.com','user123','USER');
+
 
 
 INSERT INTO tb_rfid(nome_area,latitude,longitude)

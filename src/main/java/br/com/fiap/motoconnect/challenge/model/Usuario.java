@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "tb_usuario", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Usuario {
 
     @Id

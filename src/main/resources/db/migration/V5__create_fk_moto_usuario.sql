@@ -1,0 +1,5 @@
+ALTER TABLE tb_moto
+    ADD user_id BIGINT;
+
+ALTER TABLE tb_moto
+    ADD CONSTRAINT FK_MOTO_ON_USUARIO FOREIGN KEY (user_id) REFERENCES tb_usuario (id);

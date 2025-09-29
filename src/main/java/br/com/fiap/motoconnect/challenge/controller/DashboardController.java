@@ -1,7 +1,6 @@
 package br.com.fiap.motoconnect.challenge.controller;
 
 import br.com.fiap.motoconnect.challenge.service.RfidService;
-import br.com.fiap.motoconnect.challenge.service.UsuarioService;
 import br.com.fiap.motoconnect.challenge.service.MotoService;
 import br.com.fiap.motoconnect.challenge.service.HistoricoMotoService;
 import org.springframework.stereotype.Controller;

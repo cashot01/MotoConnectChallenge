@@ -33,16 +33,10 @@
             <td th:text="${hist.usuario.nome}"></td>
             <td>
                 <a th:href="@{'/historico/editar/' + ${hist.id}}" class="btn small">Editar</a>
-
-                <form th:action="@{'/historico/deletar/' + ${hist.id}}"
-                      method="post" th:object="${hist}" style="display:inline;"
-                      onsubmit="return confirm('Tem certeza que deseja excluir este registro?');">
+                <form th:action="@{'/historico/deletar/' + ${hist.id}}" method="post" style="display:inline;">
                     <button type="submit" class="link-btn">Excluir</button>
                 </form>
             </td>
-        </tr>
-        <tr th:if="${#lists.isEmpty(historicos)}">
-            <td colspan="6" style="text-align: center;">Nenhum registro encontrado</td>
         </tr>
         </tbody>
     </table>
