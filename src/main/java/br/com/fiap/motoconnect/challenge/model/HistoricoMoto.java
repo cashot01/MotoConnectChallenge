@@ -3,8 +3,6 @@ package br.com.fiap.motoconnect.challenge.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Data
 @Table(name = "tb_historico_moto")
@@ -28,6 +26,4 @@ public class HistoricoMoto {
     @JoinColumn(name="usuario_id", nullable = false)
     private Usuario usuario;
 
-    @Column(name="data_registro", nullable = false)
-    private LocalDateTime dataRegistro = LocalDateTime.now();
 }

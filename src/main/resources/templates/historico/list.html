@@ -7,30 +7,47 @@
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
+
 <div class="container">
     <h2>Histórico de Motos</h2>
+
     <a th:href="@{/historico/novo}" class="btn">Novo Registro</a>
+
     <table class="styled-table">
         <thead>
-        <tr><th>ID</th><th>Parte</th><th>Descrição</th><th>Moto</th><th>Usuário</th><th>Ações</th></tr>
+        <tr>
+            <th>ID</th>
+            <th>Parte</th>
+            <th>Descrição</th>
+            <th>Moto</th>
+            <th>Usuário</th>
+            <th>Ações</th>
+        </tr>
         </thead>
         <tbody>
         <tr th:each="hist : ${historicos}">
             <td th:text="${hist.id}"></td>
             <td th:text="${hist.parte}"></td>
             <td th:text="${hist.descricao}"></td>
-            <td th:text="${hist.moto.modelo} + ' / ' + ${hist.moto.placa}"></td>
+            <td th:text="${hist.moto.modelo + ' / ' + hist.moto.placa}"></td>
             <td th:text="${hist.usuario.nome}"></td>
             <td>
                 <a th:href="@{'/historico/editar/' + ${hist.id}}" class="btn small">Editar</a>
-                <form th:action="@{'/historico/deletar/' + ${hist.id}}" method="post" style="display:inline;">
+
+                <form th:action="@{'/historico/deletar/' + ${hist.id}}"
+                      method="post" th:object="${hist}" style="display:inline;"
+                      onsubmit="return confirm('Tem certeza que deseja excluir este registro?');">
                     <button type="submit" class="link-btn">Excluir</button>
                 </form>
             </td>
         </tr>
+        <tr th:if="${#lists.isEmpty(historicos)}">
+            <td colspan="6" style="text-align: center;">Nenhum registro encontrado</td>
+        </tr>
         </tbody>
     </table>
 </div>
+
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

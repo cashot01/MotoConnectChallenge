@@ -7,25 +7,36 @@
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
+
 <div class="container">
     <h2 th:text="${historico.id != null ? 'Editar Registro' : 'Novo Registro'}"></h2>
-    <form th:action="${historico.id != null} ? @{/historico/atualizar/{id}(id=${historico.id})} : @{/historico}" th:object="${historico}" method="post">
+
+    <form th:action="${historico.id != null} ? @{/historico/atualizar/{id}(id=${historico.id})} : @{/historico}"
+          th:object="${historico}" method="post">
+
         <label>Parte</label>
         <input type="text" th:field="*{parte}" required/>
+
         <label>Descrição</label>
         <textarea th:field="*{descricao}" required></textarea>
+
         <label>Moto</label>
         <select th:field="*{moto}" required>
-            <option th:each="moto : ${motos}" th:value="${moto}" th:text="${moto.modelo} + ' / ' + ${moto.placa}"></option>
+            <option th:each="moto : ${motos}" th:value="${moto.id}"
+                    th:text="${moto.modelo} + ' / ' + ${moto.placa}"></option>
         </select>
+
         <label>Usuário</label>
         <select th:field="*{usuario}" required>
-            <option th:each="usuario : ${usuarios}" th:value="${usuario}" th:text="${usuario.nome}"></option>
+            <option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
+                    th:text="${usuario.nome}"></option>
         </select>
+
         <button type="submit" class="btn">Salvar</button>
         <a th:href="@{/historico}" class="btn small">Cancelar</a>
     </form>
 </div>
+
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
