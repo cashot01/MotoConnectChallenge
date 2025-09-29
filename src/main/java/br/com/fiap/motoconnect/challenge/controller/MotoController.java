@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/motos")
 public class MotoController {
+
     private final MotoService service;
     private final RfidService rfidService;
     private final UsuarioService usuarioService;
@@ -40,13 +41,14 @@ public class MotoController {
     @PostMapping
     public String salvar(@Valid @ModelAttribute Moto moto, BindingResult result) {
         if (result.hasErrors()) return "motos/form";
-        service.salvar(moto);
+        service.salvar(moto); // método salvar sem dataCadastro
         return "redirect:/motos";
     }
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
-        Moto moto = service.buscarPorId(id).orElseThrow(() -> new IllegalArgumentException("ID inválido"));
+        Moto moto = service.buscarPorId(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID inválido"));
         model.addAttribute("moto", moto);
         model.addAttribute("rfids", rfidService.listarTodos());
         model.addAttribute("usuarios", usuarioService.listarTodos());
@@ -57,7 +59,7 @@ public class MotoController {
     public String atualizar(@PathVariable Long id, @Valid @ModelAttribute Moto moto, BindingResult result) {
         if (result.hasErrors()) return "motos/form";
         moto.setId(id);
-        service.salvar(moto);
+        service.salvar(moto); // mesmo salvar sem dataCadastro
         return "redirect:/motos";
     }
 

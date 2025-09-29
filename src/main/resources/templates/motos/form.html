@@ -7,35 +7,49 @@
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
+
 <div class="container">
-    <h2 th:text="${moto.id != null ? 'Editar Moto' : 'Nova Moto'}"></h2>
-    <form th:action="${moto.id != null} ? @{/motos/atualizar/{id}(id=${moto.id})} : @{/motos}" th:object="${moto}" method="post">
+    <h2 th:text="${moto.id != null} ? 'Editar Moto' : 'Nova Moto'"></h2>
+    <form th:action="@{${moto.id != null} ? '/motos/atualizar/' + ${moto.id} : '/motos'}"
+          th:object="${moto}" method="post">
+
         <label>Modelo</label>
         <select th:field="*{modelo}" required>
             <option value="POP">POP</option>
             <option value="E">E</option>
             <option value="SPORT">SPORT</option>
         </select>
+
         <label>Placa</label>
         <input type="text" th:field="*{placa}" required/>
+
         <label>Status</label>
         <select th:field="*{status}" required>
             <option value="NAO_INICIADO">Não Iniciado</option>
             <option value="MANUTENCAO">Manutenção</option>
             <option value="REVISADA">Revisada</option>
         </select>
+
         <label>RFID</label>
-        <select th:field="*{rfid}" >
-            <option th:each="rfid : ${rfids}" th:value="${rfid}" th:text="${rfid.nomeArea}"></option>
+        <select th:field="*{rfid.id}">
+            <option value="">-- Selecionar --</option>
+            <option th:each="r : ${rfids}" th:value="${r.id}" th:text="${r.nomeArea}"
+                    th:selected="${moto.rfid != null} ? ${r.id == moto.rfid.id} : false">
+            </option>
         </select>
+
         <label>Usuário</label>
-        <select th:field="*{usuario}" required>
-            <option th:each="usuario : ${usuarios}" th:value="${usuario}" th:text="${usuario.nome}"></option>
+        <select th:field="*{usuario.id}" required>
+            <option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.nome}"
+                    th:selected="${moto.usuario != null} ? ${u.id == moto.usuario.id} : false">
+            </option>
         </select>
+
         <button type="submit" class="btn">Salvar</button>
         <a th:href="@{/motos}" class="btn small">Cancelar</a>
     </form>
 </div>
+
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

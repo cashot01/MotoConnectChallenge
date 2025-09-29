@@ -3,8 +3,6 @@ package br.com.fiap.motoconnect.challenge.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
-
 @Entity
 @Data
 @Table(name = "tb_moto", uniqueConstraints = @UniqueConstraint(columnNames = "placa"))
@@ -19,9 +17,6 @@ public class Moto {
 
     @Column(nullable = false, length = 7)
     private String placa;
-
-    @Column(name = "data_cadastro", nullable = false)
-    private LocalDate dataCadastro;
 
     @Column(nullable = false, length = 15)
     private String status;

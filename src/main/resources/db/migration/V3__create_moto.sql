@@ -2,7 +2,6 @@ CREATE TABLE tb_moto (
     id SERIAL PRIMARY KEY,
     modelo VARCHAR(10) NOT NULL,
     placa VARCHAR(7) NOT NULL,
-    data_cadastro DATE NOT NULL,
     status VARCHAR(15) NOT NULL,
     rfid_id INT,
     usuario_id INT NOT NULL,
