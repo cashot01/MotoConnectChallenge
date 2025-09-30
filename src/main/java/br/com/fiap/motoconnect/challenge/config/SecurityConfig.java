@@ -17,7 +17,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests( auth -> auth
                         .anyRequest().authenticated()
                 )
-                .oauth2Login(login -> login.defaultSuccessUrl("/"))
+                .oauth2Login(login -> login.defaultSuccessUrl("/dashboard", true))
                 .build();
     }
 

@@ -6,8 +6,10 @@ import br.com.fiap.motoconnect.challenge.service.HistoricoMotoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/dasboard")
 public class DashboardController {
 
     private final MotoService motoService;
@@ -23,7 +25,7 @@ public class DashboardController {
         this.rfidService= rfidService;
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public String dashboard(Model model) {
 
         model.addAttribute("totalMotos", motoService.listarTodos().size());

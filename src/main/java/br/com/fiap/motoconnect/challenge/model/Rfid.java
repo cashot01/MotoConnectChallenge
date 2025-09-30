@@ -18,9 +18,9 @@ public class Rfid {
     @Column(nullable = false, length = 100)
     private String nomeArea;
 
-    @Column(nullable = false, precision = 9, scale = 6)
+    @Column(nullable = false)
     private Double latitude;
 
-    @Column(nullable = false, precision = 9, scale = 6)
+    @Column(nullable = false)
     private Double longitude;
 }
